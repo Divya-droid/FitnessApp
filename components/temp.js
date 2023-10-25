@@ -1,22 +1,16 @@
+/** 
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 
-// back, cardio, chest, lower arms, lower legs, neck, shoulders, upper arms, upper legs, waist
+
 const exercises = [
-    { id: 1, name: 'back', image: require('../assets/back.png'), altText: 'Back Exercise' },
-    { id: 2, name: 'cardio', image: require('../assets/cardio.png'), altText: 'Cardio Exercise' },
-    { id: 3, name: 'chest', image: require('../assets/chest.png'), altText: 'Chest Exercise' },
-    { id: 4, name: 'lower arms', image: require('../assets/lowarm.png'), altText: 'Lower Arms Exercise' },
-    { id: 5, name: 'lower legs', image: require('../assets/lowleg.png'), altText: 'Lower Legs Exercise' },
-    { id: 6, name: 'neck', image: require('../assets/neck.png'), altText: 'Neck Exercise' },
-    { id: 7, name: 'shoulders', image: require('../assets/shoulder.png'), altText: 'Shoulders Exercise' },
-    { id: 8, name: 'upper arms', image: require('../assets/upperarm.png'), altText: 'Upper Arms Exercise' },
-    { id: 9, name: 'upper legs', image: require('../assets/upperleg.png'), altText: 'Upper Legs Exercise' },
-    { id: 10, name: 'waist', image: require('../assets/waist.png'), altText: 'Waist Exercise' },
-    // Add more exercises as needed
-  ];
-  
+  { id: 1, name: 'Push-ups', image: require('../assets/push_ups.png'), gif: require('../assets/pushup.gif' ) },
+  { id: 2, name: 'Sit-ups', image: require('../assets/situps.png'), gif: require('../assets/situp.gif') },
+  { id: 3, name: 'Squats', image: require('../assets/squat.png'), gif: require('../assets/squat.gif') },
+  // Add more exercises as needed
+];
+
 function HomeScreen({ route, navigation }) {
   const [completedExercises, setCompletedExercises] = useState([]);
 
@@ -57,15 +51,10 @@ function HomeScreen({ route, navigation }) {
           {exercises.map((exercise) => (
             <View key={exercise.id} style={styles.exerciseContainer}>
              <Text style={styles.exerciseName}>{exercise.name}</Text>
-             {exercise.image ? (
-                <Image source={exercise.image} style={styles.imageStyle} />
-              ) : (
-                <Text style={styles.altText}>{exercise.altText}</Text>
-              )}
-             
+              <Image source={exercise.image} style={styles.imageStyle} />
               <TouchableOpacity
                 style={styles.startExerciseButton}
-                onPress={() => navigation.navigate('Exercise', { exercise , bodyPart: exercise.name  })}
+                onPress={() => navigation.navigate('Exercise', { exercise })}
               >
                 <Text style={styles.startExerciseButtonText}>Start Exercise</Text>
                 <Icon name="bolt" size={20} color="goldenrod" style={styles.lightningIcon} />
@@ -152,11 +141,61 @@ const styles = StyleSheet.create({
     startExerciseButtonText: {
       color: 'white', // Text color
     },
-    altText: {
-        fontSize: 16,
-        textAlign: 'center',
-        color: 'black', // Specify the color you prefer
-      },
+  
   });
   
   export default HomeScreen;
+
+
+
+
+  import React from 'react';
+import { View, Text, Button, StyleSheet,Image } from 'react-native';
+
+function ExerciseScreen({ route, navigation }) {
+  const { exercise } = route.params;
+
+  // Function to mark exercise as done and navigate back to HomeScreen
+  const markExerciseAsDone = () => {
+    const completedExercise = { id: exercise.id, name: exercise.name };
+    navigation.navigate('Home', { completedExercise });
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.header}>Exercise Screen</Text>
+      <Text style={styles.exerciseName}>{exercise.name}</Text>
+      <Image
+        source={exercise.gif} // Update with the path to your GIF for this exercise
+        style={styles.gif}
+      />
+      <Button title="Mark as Done" onPress={markExerciseAsDone} />
+      <Button title="Back to Home" onPress={() => navigation.navigate('Home')} />
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  exerciseName: {
+    fontSize: 22,
+    marginBottom: 20,
+  },
+  gif: {
+    width: 300,  // Set the width for your GIF
+    height: 300, // Set the height for your GIF
+  },
+});
+
+export default ExerciseScreen;
+*/
+  
