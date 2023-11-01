@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, Button, StyleSheet, Image, ImageBackground,  FlatList, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 
 function ExerciseScreen({ route, navigation }) {
-  const { exercise , bodyPart} = route.params;
-  const [entries, setEntries] = useState([]); // State to store entries
+  const { exercise, bodyPart } = route.params;
+  const [entries, setEntries] = useState([]);
 
-   // Construct the API URL based on the selected body part
-   const apiUrl = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
+  // Construct the API URL based on the selected body part
+  const apiUrl = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
   // Function to mark exercise as done and navigate back to HomeScreen
   const markExerciseAsDone = () => {
     const completedExercise = { id: exercise.id, name: exercise.name };
@@ -37,8 +37,11 @@ function ExerciseScreen({ route, navigation }) {
   }, []);
 
   return (
+    <ImageBackground source= {require('../assets/bg_img.jpg')}  style={styles.backgroundImage}>
+
     <View style={styles.container}>
-      <Text style={styles.header}>Exercise List Screen</Text>
+      <Text style={styles.header}>{exercise.altText}</Text>
+      <Image source={exercise.image} style={styles.eximg} />
 
       <FlatList
         data={entries}
@@ -46,43 +49,82 @@ function ExerciseScreen({ route, navigation }) {
         renderItem={({ item }) => (
           <View style={styles.entryContainer}>
             <Text style={styles.exerciseName}>{item.name}</Text>
-            <Image
-              source={{ uri: item.gifUrl }}
-              style={styles.gif}
-            />
+            <Image source={{ uri: item.gifUrl }} style={styles.gif} />
+
+            <TouchableOpacity
+              style={[styles.startExerciseButton, { backgroundColor: 'white', width: 200, height: 40 }]}
+              onPress={() => navigation.navigate('Workout', { exercise:exercise,part:bodyPart,img:item.gifUrl, Name: item.name , ID:item.id ,inst:item.instructions})}
+            >
+              <Text style={[styles.starttrainButtonText, { color: 'black', fontWeight: 'bold' }]}>Start Training</Text>
+            </TouchableOpacity>
           </View>
         )}
       />
-      <Button title="Mark as Done" onPress={markExerciseAsDone} />
-      <Button title="Back to Home" onPress={() => navigation.navigate('Home')} />
-    </View>
+      <TouchableOpacity
+      style={[styles.markAsDoneButton]}
+      onPress={markExerciseAsDone}>
+        <Text style={[styles.markAsDoneButtontext,{color:'white',fontWeight:'bold',fontSize:24}]}>Mark as Done </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+      style={[styles.backToHomeButton]}
+      onPress={() => navigation.navigate('Home')}>
+        <Text style={[styles.backToHomeButtontext,{color:'white',fontWeight:'bold',fontSize:20}]}>Home </Text>
+      </TouchableOpacity>
+
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // or 'stretch' or 'contain'
+  },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color:'white'
   },
   exerciseName: {
     fontSize: 22,
+    color:'white',
     marginBottom: 20,
+
   },
   gif: {
-    width: 300, // Set the width for your GIF
-    height: 300, // Set the height for your GIF
+    width: 350,
+    height: 200,
+    marginBottom: 20,
   },
   entryContainer: {
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: 'gray',
+    borderBottomWidth: 5,
+   borderBottomColor: 'gray',
+    alignItems: 'center',
   },
+  eximg: {
+    width: 300,
+    height: 100,
+  },
+  startExerciseButton: {
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  starttrainButtonText: {
+    fontSize: 16,
+    color: 'black',
+  },
+  
 });
 
 export default ExerciseScreen;

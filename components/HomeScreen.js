@@ -4,16 +4,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 // back, cardio, chest, lower arms, lower legs, neck, shoulders, upper arms, upper legs, waist
 const exercises = [
-    { id: 1, name: 'back', image: require('../assets/back.png'), altText: 'Back Exercise' },
-    { id: 2, name: 'cardio', image: require('../assets/cardio.png'), altText: 'Cardio Exercise' },
-    { id: 3, name: 'chest', image: require('../assets/chest.png'), altText: 'Chest Exercise' },
-    { id: 4, name: 'lower arms', image: require('../assets/lowarm.png'), altText: 'Lower Arms Exercise' },
-    { id: 5, name: 'lower legs', image: require('../assets/lowleg.png'), altText: 'Lower Legs Exercise' },
-    { id: 6, name: 'neck', image: require('../assets/neck.png'), altText: 'Neck Exercise' },
-    { id: 7, name: 'shoulders', image: require('../assets/shoulder.png'), altText: 'Shoulders Exercise' },
-    { id: 8, name: 'upper arms', image: require('../assets/upperarm.png'), altText: 'Upper Arms Exercise' },
-    { id: 9, name: 'upper legs', image: require('../assets/upperleg.png'), altText: 'Upper Legs Exercise' },
-    { id: 10, name: 'waist', image: require('../assets/waist.png'), altText: 'Waist Exercise' },
+    { id: 1, name: 'back', image: require('../assets/back.png'), altText: 'Back Exercises' },
+    { id: 2, name: 'cardio', image: require('../assets/cardio.png'), altText: 'Cardio Exercises' },
+    { id: 3, name: 'chest', image: require('../assets/chest.png'), altText: 'Chest Exercises' },
+    { id: 4, name: 'lower arms', image: require('../assets/lowarm.png'), altText: 'Lower Arms Exercises' },
+    { id: 5, name: 'lower legs', image: require('../assets/lowleg.png'), altText: 'Lower Legs Exercises' },
+    { id: 6, name: 'neck', image: require('../assets/neck.png'), altText: 'Neck Exercises' },
+    { id: 7, name: 'shoulders', image: require('../assets/shoulder.png'), altText: 'Shoulders Exercises' },
+    { id: 8, name: 'upper arms', image: require('../assets/upperarm.png'), altText: 'Upper Arms Exercises' },
+    { id: 9, name: 'upper legs', image: require('../assets/upperleg.png'), altText: 'Upper Legs Exercises' },
+    { id: 10, name: 'waist', image: require('../assets/waist.png'), altText: 'Waist Exercises' },
     // Add more exercises as needed
   ];
   
@@ -67,7 +67,7 @@ function HomeScreen({ route, navigation }) {
                 style={styles.startExerciseButton}
                 onPress={() => navigation.navigate('Exercise', { exercise , bodyPart: exercise.name  })}
               >
-                <Text style={styles.startExerciseButtonText}>Start Exercise</Text>
+                <Text style={styles.startExerciseButtonText}>Check Out Exercises</Text>
                 <Icon name="bolt" size={20} color="goldenrod" style={styles.lightningIcon} />
               </TouchableOpacity>
             </View>
