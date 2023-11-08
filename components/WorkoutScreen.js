@@ -5,8 +5,9 @@ function WorkoutScreen({ route, navigation }) {
   const { exercise, part, img, Name, ID, inst } = route.params;
 
   const markExerciseAsDone = () => {
-    navigation.navigate('Exercise', { exercise, part });
-    // navigation.goback;
+   // navigation.navigate('Exercise', { exercise, part });
+    navigation.navigate('RestScreen',{exercise,part}); // Navigate to the RestScreen
+    
   };
 
   return (

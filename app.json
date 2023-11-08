@@ -25,6 +25,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra":{
+      "apiKey":"AIzaSyAfD7Mpokf8Tw4PDUfue11MvBKBJG_JYNM",
+       "authDomain": "fitness-e4975.firebaseapp.com",
+       "projectId":"fitness-e4975",
+       "storageBucket": "fitness-e4975.appspot.com",
+        "messagingSenderId": "820180577802",
+        "appId":"1:820180577802:web:89f6d9b3ad47d14af579f3",
+         "measurementId":"G-JPW9KJ1GD8"
     }
   }
 }

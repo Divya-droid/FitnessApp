@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
+import { useExerciseContext } from '../ExerciseContext';
 
-// back, cardio, chest, lower arms, lower legs, neck, shoulders, upper arms, upper legs, waist
-const exercises = [
-    { id: 1, name: 'back', image: require('../assets/back.png'), altText: 'Back Exercises' },
-    { id: 2, name: 'cardio', image: require('../assets/cardio.png'), altText: 'Cardio Exercises' },
-    { id: 3, name: 'chest', image: require('../assets/chest.png'), altText: 'Chest Exercises' },
-    { id: 4, name: 'lower arms', image: require('../assets/lowarm.png'), altText: 'Lower Arms Exercises' },
-    { id: 5, name: 'lower legs', image: require('../assets/lowleg.png'), altText: 'Lower Legs Exercises' },
-    { id: 6, name: 'neck', image: require('../assets/neck.png'), altText: 'Neck Exercises' },
-    { id: 7, name: 'shoulders', image: require('../assets/shoulder.png'), altText: 'Shoulders Exercises' },
-    { id: 8, name: 'upper arms', image: require('../assets/upperarm.png'), altText: 'Upper Arms Exercises' },
-    { id: 9, name: 'upper legs', image: require('../assets/upperleg.png'), altText: 'Upper Legs Exercises' },
-    { id: 10, name: 'waist', image: require('../assets/waist.png'), altText: 'Waist Exercises' },
-    // Add more exercises as needed
-  ];
+
   
 function HomeScreen({ route, navigation }) {
+   
+  const exercises = useExerciseContext();
+    // Define your initial exercises data
+   /** 
+    const exercises = [
+      { id: 1, name: 'back', image: require('../assets/back.png'), altText: 'Back Exercises' },
+      { id: 2, name: 'cardio', image: require('../assets/cardio.png'), altText: 'Cardio Exercises' },
+      { id: 3, name: 'chest', image: require('../assets/chest.png'), altText: 'Chest Exercises' },
+      { id: 4, name: 'lower arms', image: require('../assets/lowarm.png'), altText: 'Lower Arms Exercises' },
+      { id: 5, name: 'lower legs', image: require('../assets/lowleg.png'), altText: 'Lower Legs Exercises' },
+      { id: 6, name: 'neck', image: require('../assets/neck.png'), altText: 'Neck Exercises' },
+      { id: 7, name: 'shoulders', image: require('../assets/shoulder.png'), altText: 'Shoulders Exercises' },
+      { id: 8, name: 'upper arms', image: require('../assets/upperarm.png'), altText: 'Upper Arms Exercises' },
+      { id: 9, name: 'upper legs', image: require('../assets/upperleg.png'), altText: 'Upper Legs Exercises' },
+      { id: 10, name: 'waist', image: require('../assets/waist.png'), altText: 'Waist Exercises' },
+      // Add more exercises as needed
+    ];
+*/
+ 
+  
   const [completedExercises, setCompletedExercises] = useState([]);
-
+  
   // Check if a completed exercise was passed from ExerciseScreen
   const { params } = route;
   if (params && params.completedExercise) {
