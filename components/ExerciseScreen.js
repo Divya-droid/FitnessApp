@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   eximg: {
-    width: 300,
-    height: 100,
+    width: 350,
+    height: 180,
   },
   startExerciseButton: {
     backgroundColor: 'white',
